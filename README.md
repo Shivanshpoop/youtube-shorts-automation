@@ -1,40 +1,47 @@
-# NOBODY ASKED — YouTube Shorts Automation
+# NOBODY ASKED — YouTube Shorts Production Toolkit
 
-A completed, working automation project built to streamline the creation of faceless YouTube Shorts for an English-speaking, US-focused audience.
+A Python + FFmpeg helper for assembling vertical short-form videos from narration and background footage. The channel concept documented here is a faceless English-language channel for a US audience, focused on humorous, weird, and unexpected facts. The publishing plan discussed for the concept is three Shorts per day.
 
-## Project concept
+## Included tool
+`shorts_builder.py` combines a narration audio file with looping background footage, crops it to a vertical 9:16 frame, matches the video length to the narration, and exports an MP4.
 
-**NOBODY ASKED** is built around humorous, weird, and unexpected facts. The channel plan is designed for consistent short-form publishing, with a target of three Shorts per day.
+### Requirements
+- Python 3.9+
+- FFmpeg and FFprobe installed and available on PATH
+- A narration file you have rights to use
+- Background footage you have rights to use
 
-## Workflow overview
+No Python packages or API keys are required for the video assembly helper.
 
-The project brings together the key stages of a repeatable Shorts production workflow:
+### Usage
+```bash
+python shorts_builder.py --audio assets/narration.mp3 --video assets/background.mp4 --output output/short.mp4
+```
 
-1. Prepare short-form fact-based content.
-2. Generate English narration using an AI voice.
-3. Assemble the narration and visual content into a short video.
-4. Prepare the finished Short for publishing.
+Optional output settings:
+```bash
+python shorts_builder.py --audio narration.wav --video footage.mp4 --output output/short.mp4 --width 1080 --height 1920 --fps 30
+```
 
-The selected narration voice is **Roger — Laid-Back, Casual, Resonant**, using the **Eleven v4** model in ElevenLabs.
+The tool writes H.264 video with AAC audio. Check the exported video before publishing.
 
-## Project status
+## Narration workflow
+The channel concept previously selected uses ElevenLabs' **Roger — Laid-Back, Casual, Resonant** voice with the **Eleven v4** model. Generate or export narration from your authorized ElevenLabs account, then pass the audio file to this tool. Do not put API keys or account credentials in this repository.
 
-<em>Completed and working</em> — as reported by the project author.
+## Suggested production checklist
+1. Research and fact-check a short, surprising fact.
+2. Write an original concise script and verify factual claims.
+3. Generate narration using a voice you are licensed to use.
+4. Select licensed/owned background footage.
+5. Run `shorts_builder.py`.
+6. Review captions, pacing, audio levels, factual accuracy, and platform requirements.
+7. Publish manually or through an approved YouTube API workflow.
 
-This GitHub repository is currently the project documentation page. The actual workflow export, scripts, configuration files, and sample outputs still need to be added before someone else can reproduce the setup from this repository.
+## Project status and scope
+This repository contains a working local video-assembly utility and a documented production workflow. It does **not** claim that cloud scheduling, script research, ElevenLabs API calls, or automatic YouTube publishing are implemented here. Those integrations require account credentials, permissions, and additional implementation/testing.
 
-## Planned repository contents
+## Safety
+Never commit API keys, OAuth tokens, cookies, or private channel credentials. Respect copyright and YouTube policies. Do not publish unverified facts.
 
-- Workflow export or automation configuration
-- Supporting scripts and integration notes
-- Environment/setup instructions
-- Sample generated videos or screenshots
-- Troubleshooting and maintenance notes
-
-## Security
-
-Never commit API keys, access tokens, passwords, or private account credentials. Store secrets in environment variables or a local secrets manager.
-
-## Maintainer
-
-**Shivansh Verma** · [GitHub](https://github.com/shivanshpoop) · [LinkedIn](https://www.linkedin.com/in/shivansh-verma-239888350/)
+## License
+MIT
